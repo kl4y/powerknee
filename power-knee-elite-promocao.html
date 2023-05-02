@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+	
+		<script data-cfasync="false" data-no-defer="1">var ewww_webp_supported=!1;function check_webp_feature(A,e){var w;e=void 0!==e?e:function(){},ewww_webp_supported?e(ewww_webp_supported):((w=new Image).onload=function(){ewww_webp_supported=0<w.width&&0<w.height,e&&e(ewww_webp_supported)},w.onerror=function(){e&&e(!1)},w.src="data:image/webp;base64,"+{alpha:"UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA=="}[A])}check_webp_feature("alpha");</script><script data-cfasync="false" data-no-defer="1">var Arrive=function(c,w){"use strict";if(c.MutationObserver&&"undefined"!=typeof HTMLElement){var r,a=0,u=(r=HTMLElement.prototype.matches||HTMLElement.prototype.webkitMatchesSelector||HTMLElement.prototype.mozMatchesSelector||HTMLElement.prototype.msMatchesSelector,{matchesSelector:function(e,t){return e instanceof HTMLElement&&r.call(e,t)},addMethod:function(e,t,r){var a=e[t];e[t]=function(){return r.length==arguments.length?r.apply(this,arguments):"function"==typeof a?a.apply(this,arguments):void 0}},callCallbacks:function(e,t){t&&t.options.onceOnly&&1==t.firedElems.length&&(e=[e[0]]);for(var r,a=0;r=e[a];a++)r&&r.callback&&r.callback.call(r.elem,r.elem);t&&t.options.onceOnly&&1==t.firedElems.length&&t.me.unbindEventWithSelectorAndCallback.call(t.target,t.selector,t.callback)},checkChildNodesRecursively:function(e,t,r,a){for(var i,n=0;i=e[n];n++)r(i,t,a)&&a.push({callback:t.callback,elem:i}),0<i.childNodes.length&&u.checkChildNodesRecursively(i.childNodes,t,r,a)},mergeArrays:function(e,t){var r,a={};for(r in e)e.hasOwnProperty(r)&&(a[r]=e[r]);for(r in t)t.hasOwnProperty(r)&&(a[r]=t[r]);return a},toElementsArray:function(e){return e=void 0!==e&&("number"!=typeof e.length||e===c)?[e]:e}}),e=(l.prototype.addEvent=function(e,t,r,a){a={target:e,selector:t,options:r,callback:a,firedElems:[]};return this._beforeAdding&&this._beforeAdding(a),this._eventsBucket.push(a),a},l.prototype.removeEvent=function(e){for(var t,r=this._eventsBucket.length-1;t=this._eventsBucket[r];r--)e(t)&&(this._beforeRemoving&&this._beforeRemoving(t),(t=this._eventsBucket.splice(r,1))&&t.length&&(t[0].callback=null))},l.prototype.beforeAdding=function(e){this._beforeAdding=e},l.prototype.beforeRemoving=function(e){this._beforeRemoving=e},l),t=function(i,n){var o=new e,l=this,s={fireOnAttributesModification:!1};return o.beforeAdding(function(t){var e=t.target;e!==c.document&&e!==c||(e=document.getElementsByTagName("html")[0]);var r=new MutationObserver(function(e){n.call(this,e,t)}),a=i(t.options);r.observe(e,a),t.observer=r,t.me=l}),o.beforeRemoving(function(e){e.observer.disconnect()}),this.bindEvent=function(e,t,r){t=u.mergeArrays(s,t);for(var a=u.toElementsArray(this),i=0;i<a.length;i++)o.addEvent(a[i],e,t,r)},this.unbindEvent=function(){var r=u.toElementsArray(this);o.removeEvent(function(e){for(var t=0;t<r.length;t++)if(this===w||e.target===r[t])return!0;return!1})},this.unbindEventWithSelectorOrCallback=function(r){var a=u.toElementsArray(this),i=r,e="function"==typeof r?function(e){for(var t=0;t<a.length;t++)if((this===w||e.target===a[t])&&e.callback===i)return!0;return!1}:function(e){for(var t=0;t<a.length;t++)if((this===w||e.target===a[t])&&e.selector===r)return!0;return!1};o.removeEvent(e)},this.unbindEventWithSelectorAndCallback=function(r,a){var i=u.toElementsArray(this);o.removeEvent(function(e){for(var t=0;t<i.length;t++)if((this===w||e.target===i[t])&&e.selector===r&&e.callback===a)return!0;return!1})},this},i=new function(){var s={fireOnAttributesModification:!1,onceOnly:!1,existing:!1};function n(e,t,r){return!(!u.matchesSelector(e,t.selector)||(e._id===w&&(e._id=a++),-1!=t.firedElems.indexOf(e._id)))&&(t.firedElems.push(e._id),!0)}var c=(i=new t(function(e){var t={attributes:!1,childList:!0,subtree:!0};return e.fireOnAttributesModification&&(t.attributes=!0),t},function(e,i){e.forEach(function(e){var t=e.addedNodes,r=e.target,a=[];null!==t&&0<t.length?u.checkChildNodesRecursively(t,i,n,a):"attributes"===e.type&&n(r,i)&&a.push({callback:i.callback,elem:r}),u.callCallbacks(a,i)})})).bindEvent;return i.bindEvent=function(e,t,r){t=void 0===r?(r=t,s):u.mergeArrays(s,t);var a=u.toElementsArray(this);if(t.existing){for(var i=[],n=0;n<a.length;n++)for(var o=a[n].querySelectorAll(e),l=0;l<o.length;l++)i.push({callback:r,elem:o[l]});if(t.onceOnly&&i.length)return r.call(i[0].elem,i[0].elem);setTimeout(u.callCallbacks,1,i)}c.call(this,e,t,r)},i},o=new function(){var a={};function i(e,t){return u.matchesSelector(e,t.selector)}var n=(o=new t(function(){return{childList:!0,subtree:!0}},function(e,r){e.forEach(function(e){var t=e.removedNodes,e=[];null!==t&&0<t.length&&u.checkChildNodesRecursively(t,r,i,e),u.callCallbacks(e,r)})})).bindEvent;return o.bindEvent=function(e,t,r){t=void 0===r?(r=t,a):u.mergeArrays(a,t),n.call(this,e,t,r)},o};d(HTMLElement.prototype),d(NodeList.prototype),d(HTMLCollection.prototype),d(HTMLDocument.prototype),d(Window.prototype);var n={};return s(i,n,"unbindAllArrive"),s(o,n,"unbindAllLeave"),n}function l(){this._eventsBucket=[],this._beforeAdding=null,this._beforeRemoving=null}function s(e,t,r){u.addMethod(t,r,e.unbindEvent),u.addMethod(t,r,e.unbindEventWithSelectorOrCallback),u.addMethod(t,r,e.unbindEventWithSelectorAndCallback)}function d(e){e.arrive=i.bindEvent,s(i,e,"unbindArrive"),e.leave=o.bindEvent,s(o,e,"unbindLeave")}}(window,void 0),ewww_webp_supported=!1;function check_webp_feature(e,t){var r;ewww_webp_supported?t(ewww_webp_supported):((r=new Image).onload=function(){ewww_webp_supported=0<r.width&&0<r.height,t(ewww_webp_supported)},r.onerror=function(){t(!1)},r.src="data:image/webp;base64,"+{alpha:"UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",animation:"UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"}[e])}function ewwwLoadImages(e){if(e){for(var t=document.querySelectorAll(".batch-image img, .image-wrapper a, .ngg-pro-masonry-item a, .ngg-galleria-offscreen-seo-wrapper a"),r=0,a=t.length;r<a;r++)ewwwAttr(t[r],"data-src",t[r].getAttribute("data-webp")),ewwwAttr(t[r],"data-thumbnail",t[r].getAttribute("data-webp-thumbnail"));for(var i=document.querySelectorAll(".rev_slider ul li"),r=0,a=i.length;r<a;r++){ewwwAttr(i[r],"data-thumb",i[r].getAttribute("data-webp-thumb"));for(var n=1;n<11;)ewwwAttr(i[r],"data-param"+n,i[r].getAttribute("data-webp-param"+n)),n++}for(r=0,a=(i=document.querySelectorAll(".rev_slider img")).length;r<a;r++)ewwwAttr(i[r],"data-lazyload",i[r].getAttribute("data-webp-lazyload"));for(var o=document.querySelectorAll("div.woocommerce-product-gallery__image"),r=0,a=o.length;r<a;r++)ewwwAttr(o[r],"data-thumb",o[r].getAttribute("data-webp-thumb"))}for(var l=document.querySelectorAll("video"),r=0,a=l.length;r<a;r++)ewwwAttr(l[r],"poster",e?l[r].getAttribute("data-poster-webp"):l[r].getAttribute("data-poster-image"));for(var s,c=document.querySelectorAll("img.ewww_webp_lazy_load"),r=0,a=c.length;r<a;r++)e&&(ewwwAttr(c[r],"data-lazy-srcset",c[r].getAttribute("data-lazy-srcset-webp")),ewwwAttr(c[r],"data-srcset",c[r].getAttribute("data-srcset-webp")),ewwwAttr(c[r],"data-lazy-src",c[r].getAttribute("data-lazy-src-webp")),ewwwAttr(c[r],"data-src",c[r].getAttribute("data-src-webp")),ewwwAttr(c[r],"data-orig-file",c[r].getAttribute("data-webp-orig-file")),ewwwAttr(c[r],"data-medium-file",c[r].getAttribute("data-webp-medium-file")),ewwwAttr(c[r],"data-large-file",c[r].getAttribute("data-webp-large-file")),null!=(s=c[r].getAttribute("srcset"))&&!1!==s&&s.includes("R0lGOD")&&ewwwAttr(c[r],"src",c[r].getAttribute("data-lazy-src-webp"))),c[r].className=c[r].className.replace(/\bewww_webp_lazy_load\b/,"");for(var w=document.querySelectorAll(".ewww_webp"),r=0,a=w.length;r<a;r++)e?(ewwwAttr(w[r],"srcset",w[r].getAttribute("data-srcset-webp")),ewwwAttr(w[r],"src",w[r].getAttribute("data-src-webp")),ewwwAttr(w[r],"data-orig-file",w[r].getAttribute("data-webp-orig-file")),ewwwAttr(w[r],"data-medium-file",w[r].getAttribute("data-webp-medium-file")),ewwwAttr(w[r],"data-large-file",w[r].getAttribute("data-webp-large-file")),ewwwAttr(w[r],"data-large_image",w[r].getAttribute("data-webp-large_image")),ewwwAttr(w[r],"data-src",w[r].getAttribute("data-webp-src"))):(ewwwAttr(w[r],"srcset",w[r].getAttribute("data-srcset-img")),ewwwAttr(w[r],"src",w[r].getAttribute("data-src-img"))),w[r].className=w[r].className.replace(/\bewww_webp\b/,"ewww_webp_loaded");window.jQuery&&jQuery.fn.isotope&&jQuery.fn.imagesLoaded&&(jQuery(".fusion-posts-container-infinite").imagesLoaded(function(){jQuery(".fusion-posts-container-infinite").hasClass("isotope")&&jQuery(".fusion-posts-container-infinite").isotope()}),jQuery(".fusion-portfolio:not(.fusion-recent-works) .fusion-portfolio-wrapper").imagesLoaded(function(){jQuery(".fusion-portfolio:not(.fusion-recent-works) .fusion-portfolio-wrapper").isotope()}))}function ewwwWebPInit(e){ewwwLoadImages(e),ewwwNggLoadGalleries(e),document.arrive(".ewww_webp",function(){ewwwLoadImages(e)}),document.arrive(".ewww_webp_lazy_load",function(){ewwwLoadImages(e)}),document.arrive("videos",function(){ewwwLoadImages(e)}),"loading"==document.readyState?document.addEventListener("DOMContentLoaded",ewwwJSONParserInit):("undefined"!=typeof galleries&&ewwwNggParseGalleries(e),ewwwWooParseVariations(e))}function ewwwAttr(e,t,r){null!=r&&!1!==r&&e.setAttribute(t,r)}function ewwwJSONParserInit(){"undefined"!=typeof galleries&&check_webp_feature("alpha",ewwwNggParseGalleries),check_webp_feature("alpha",ewwwWooParseVariations)}function ewwwWooParseVariations(e){if(e)for(var t=document.querySelectorAll("form.variations_form"),r=0,a=t.length;r<a;r++){var i=t[r].getAttribute("data-product_variations"),n=!1;try{for(var o in i=JSON.parse(i))void 0!==i[o]&&void 0!==i[o].image&&(void 0!==i[o].image.src_webp&&(i[o].image.src=i[o].image.src_webp,n=!0),void 0!==i[o].image.srcset_webp&&(i[o].image.srcset=i[o].image.srcset_webp,n=!0),void 0!==i[o].image.full_src_webp&&(i[o].image.full_src=i[o].image.full_src_webp,n=!0),void 0!==i[o].image.gallery_thumbnail_src_webp&&(i[o].image.gallery_thumbnail_src=i[o].image.gallery_thumbnail_src_webp,n=!0),void 0!==i[o].image.thumb_src_webp&&(i[o].image.thumb_src=i[o].image.thumb_src_webp,n=!0));n&&ewwwAttr(t[r],"data-product_variations",JSON.stringify(i))}catch(e){}}}function ewwwNggParseGalleries(e){if(e)for(var t in galleries){var r=galleries[t];galleries[t].images_list=ewwwNggParseImageList(r.images_list)}}function ewwwNggLoadGalleries(e){e&&document.addEventListener("ngg.galleria.themeadded",function(e,t){window.ngg_galleria._create_backup=window.ngg_galleria.create,window.ngg_galleria.create=function(e,t){var r=$(e).data("id");return galleries["gallery_"+r].images_list=ewwwNggParseImageList(galleries["gallery_"+r].images_list),window.ngg_galleria._create_backup(e,t)}})}function ewwwNggParseImageList(e){for(var t in e){var r=e[t];if(void 0!==r["image-webp"]&&(e[t].image=r["image-webp"],delete e[t]["image-webp"]),void 0!==r["thumb-webp"]&&(e[t].thumb=r["thumb-webp"],delete e[t]["thumb-webp"]),void 0!==r.full_image_webp&&(e[t].full_image=r.full_image_webp,delete e[t].full_image_webp),void 0!==r.srcsets)for(var a in r.srcsets)nggSrcset=r.srcsets[a],void 0!==r.srcsets[a+"-webp"]&&(e[t].srcsets[a]=r.srcsets[a+"-webp"],delete e[t].srcsets[a+"-webp"]);if(void 0!==r.full_srcsets)for(var i in r.full_srcsets)nggFSrcset=r.full_srcsets[i],void 0!==r.full_srcsets[i+"-webp"]&&(e[t].full_srcsets[i]=r.full_srcsets[i+"-webp"],delete e[t].full_srcsets[i+"-webp"])}return e}check_webp_feature("alpha",ewwwWebPInit);</script><title>Power Knee Elite™ &#8211; Descrição Magazine</title><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap"></noscript>
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="//cdn.ryviu.com">
+<link href="https://fonts.gstatic.com" crossorigin rel="preconnect">
+<link rel="alternate" type="application/rss+xml" title="Feed para Descrição Magazine &raquo;" href="https://descricao.com.br/feed/">
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para Descrição Magazine &raquo;" href="https://descricao.com.br/comments/feed/">
+<style>
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="css/style.min_1.css" media="all">
+<style id="wp-block-library-theme-inline-css">
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-bottom:4px solid;border-top:4px solid;color:currentColor;margin-bottom:1.75em}.wp-block-pullquote cite,.wp-block-pullquote footer,.wp-block-pullquote__citation{color:currentColor;font-size:.8125em;font-style:normal;text-transform:uppercase}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;font-style:normal;position:relative}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:0 0 1em}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video{margin:0 0 1em}.wp-block-template-part.has-background{margin-bottom:0;margin-top:0;padding:1.25em 2.375em}
+</style>
+<link data-minify="1" rel="stylesheet" id="wc-blocks-vendors-style-css" href="css/wc-blocks-vendors-style.css" media="all">
+<link data-minify="1" rel="stylesheet" id="wc-blocks-style-css" href="css/wc-blocks-style.css" media="all">
+<style id="ce4wp-subscribe-style-inline-css">
+.wp-block-ce4wp-subscribe{max-width:840px;margin:0 auto}.wp-block-ce4wp-subscribe .title{margin-bottom:0}.wp-block-ce4wp-subscribe .subTitle{margin-top:0;font-size:0.8em}.wp-block-ce4wp-subscribe .disclaimer{margin-top:5px;font-size:0.8em}.wp-block-ce4wp-subscribe .disclaimer .disclaimer-label{margin-left:10px}.wp-block-ce4wp-subscribe .inputBlock{width:100%;margin-bottom:10px}.wp-block-ce4wp-subscribe .inputBlock input{width:100%}.wp-block-ce4wp-subscribe .inputBlock label{display:inline-block}.wp-block-ce4wp-subscribe .submit-button{margin-top:25px;display:block}.wp-block-ce4wp-subscribe .required-text{display:inline-block;margin:0;padding:0;margin-left:0.3em}.wp-block-ce4wp-subscribe .onSubmission{height:0;max-width:840px;margin:0 auto}.wp-block-ce4wp-subscribe .firstNameSummary .lastNameSummary{text-transform:capitalize}.wp-block-ce4wp-subscribe .ce4wp-inline-notification{display:flex;flex-direction:row;align-items:center;padding:13px 10px;width:100%;height:40px;border-style:solid;border-color:orange;border-width:1px;border-left-width:4px;border-radius:3px;background:rgba(255,133,15,0.1);flex:none;order:0;flex-grow:1;margin:0px 0px}.wp-block-ce4wp-subscribe .ce4wp-inline-warning-text{font-style:normal;font-weight:normal;font-size:16px;line-height:20px;display:flex;align-items:center;color:#571600;margin-left:9px}.wp-block-ce4wp-subscribe .ce4wp-inline-warning-icon{color:orange}.wp-block-ce4wp-subscribe .ce4wp-inline-warning-arrow{color:#571600;margin-left:auto}.wp-block-ce4wp-subscribe .ce4wp-banner-clickable{cursor:pointer}.ce4wp-link{cursor:pointer}
+
+.no-flex{display:block}.sub-header{margin-bottom:1em}
+
+
+</style>
+<link rel="stylesheet" id="classic-theme-styles-css" href="css/classic-themes.min.css" media="all">
+<style id="global-styles-inline-css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--primary: #cc9900;--wp--preset--color--secondary: #e36159;--wp--preset--color--tertiary: #2baab1;--wp--preset--color--quaternary: #383f48;--wp--preset--color--dark: #212529;--wp--preset--color--light: #ffffff;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('power-knee-elite-promocao.html#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('power-knee-elite-promocao.html#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('power-knee-elite-promocao.html#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('power-knee-elite-promocao.html#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('power-knee-elite-promocao.html#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('power-knee-elite-promocao.html#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('power-knee-elite-promocao.html#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('power-knee-elite-promocao.html#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link data-minify="1" rel="stylesheet" id="contact-form-7-css" href="css/styles.css" media="all">
+<style id="woocommerce-inline-inline-css">
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel="stylesheet" id="upnotese-css" href="css/style.min.css" media="all">
+<link data-minify="1" rel="stylesheet" id="woo-parcelas-com-e-sem-juros-public-css" href="css/woo-parcelas-com-e-sem-juros-public.css" media="all">
+<link data-minify="1" rel="stylesheet" id="elementor-icons-css" href="css/elementor-icons.min.css" media="all">
+<link rel="stylesheet" id="elementor-frontend-legacy-css" href="css/custom-frontend-legacy.min.css" media="all">
+<link rel="stylesheet" id="elementor-frontend-css" href="css/custom-frontend.min.css" media="all">
+<link rel="stylesheet" id="elementor-post-33834-css" href="css/post-33834.css" media="all">
+<link rel="stylesheet" id="elementor-pro-css" href="css/custom-pro-frontend.min.css" media="all">
+<link data-minify="1" rel="stylesheet" id="ryviu-local-css-css" href="css/local-ryviu.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-css-vars-css" href="css/theme_css_vars.css" media="all">
+<link data-minify="1" rel="stylesheet" id="bootstrap-css" href="css/bootstrap.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-plugins-css" href="css/plugins_optimized.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-theme-css" href="css/theme.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-shortcodes-css" href="css/shortcodes.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-theme-shop-css" href="css/theme_shop.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-dynamic-style-css" href="css/dynamic_style.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-type-builder-css" href="css/type-builder.css" media="all">
+<link rel="stylesheet" id="elementor-post-92199-css" href="css/post-92199.css" media="all">
+<link data-minify="1" rel="stylesheet" id="porto-style-css" href="css/style.css" media="all">
+<style id="porto-style-inline-css">
+#header .logo,.side-header-narrow-bar-logo{max-width:150px}@media (min-width:1220px){#header .logo{max-width:150px}}@media (max-width:991px){#header .logo{max-width:120px}}@media (max-width:767px){#header .logo{max-width:120px}}#header.sticky-header .logo{max-width:150px}@media (min-width:992px){}.page-top .page-title-wrap{line-height:0}body.single-product .page-top .breadcrumbs-wrap{padding-right:55px}#login-form-popup{position:relative;width:80%;max-width:525px;margin-left:auto;margin-right:auto}#login-form-popup .featured-box{margin-bottom:0;box-shadow:none;border:none;border-radius:0}#login-form-popup .featured-box .box-content{padding:45px 36px 30px;border:none}#login-form-popup .featured-box h2{text-transform:uppercase;font-size:15px;letter-spacing:.05em;font-weight:600;line-height:2}#login-form-popup .porto-social-login-section{margin-top:20px}.porto-social-login-section{background:#f4f4f2;text-align:center;padding:20px 20px 25px}.porto-social-login-section p{text-transform:uppercase;font-size:12px;color:#282828;font-weight:600;margin-bottom:8px}#login-form-popup .col2-set{margin-left:-20px;margin-right:-20px}#login-form-popup .col-1,#login-form-popup .col-2{padding-left:20px;padding-right:20px}@media (min-width:992px){#login-form-popup .col-1{border-right:1px solid #f5f6f6}}#login-form-popup .input-text{box-shadow:none;padding-top:10px;padding-bottom:10px;border-color:#ddd;border-radius:2px;line-height:1.5 !important}#login-form-popup .form-row{margin-bottom:20px}#login-form-popup .woocommerce-privacy-policy-text{display:none}#login-form-popup .button{border-radius:2px;padding:18px 24px;text-shadow:none;font-family:Poppins,sans-serif;font-size:12px;letter-spacing:-0.025em}#login-form-popup label.inline{margin-top:15px;float:right;position:relative;cursor:pointer;line-height:1.5}#login-form-popup label.inline input[type=checkbox]{opacity:0;margin-right:8px;margin-top:0;margin-bottom:0}#login-form-popup label.inline span:before{content:'';position:absolute;border:1px solid #ddd;border-radius:1px;width:16px;height:16px;left:0;top:0;text-align:center;line-height:15px;font-family:'Font Awesome 5 Free';font-weight:900;font-size:9px;color:#aaa}#login-form-popup label.inline input[type=checkbox]:checked + span:before{content:'\f00c'}#login-form-popup .social-button i{font-size:16px;margin-right:8px}#login-form-popup p.status{color:#282828}.porto-social-login-section .google-plus{background:#dd4e31}.porto-social-login-section .facebook{background:#3a589d}.porto-social-login-section .twitter{background:#1aa9e1}.featured-box .porto-social-login-section i{color:#fff}.porto-social-login-section .social-button:hover{background:var(--bs-primary)}#login-form-popup{max-width:480px}html.panel-opened body > .mfp-bg{z-index:9042}html.panel-opened body > .mfp-wrap{z-index:9043}.main-content,.left-sidebar,.right-sidebar{padding-top:10px}.page-top{margin-bottom:30px}.custom-font4{font-family:'Segoe Script','Savoye LET'}.header-top > .container,.header-top > .container-fluid{height:64px}.header-top > .container{padding-top:.8125rem;padding-bottom:.8125rem}.porto-block-html-top .porto-sicon-box{-ms-flex-pack:center;justify-content:center}.porto-block-html-top .porto-sicon-default .porto-icon{margin-right:.5rem}.top-links > li.menu-item > a{text-transform:none}#header .my-wishlist,#header .my-account{font-size:22px}#mini-cart .cart-items,.my-wishlist .wishlist-count{background:#cc9900;box-shadow:none}#header .header-main .header-row>div{-ms-flex-pack:center;justify-content:center}#header .searchform{box-shadow:none}#header .searchform input{width:280px;height:36px}#header .searchform button{border-left:1px solid rgba(255,255,255,.5)}#header .searchform-popup .search-toggle{font-size:18px;color:#282828}@media (min-width:992px){#header .logo img{transform-origin:center center}}.breadcrumb,.page-top ul.breadcrumb>li a{font-family:Poppins,sans-serif;text-transform:uppercase;font-size:.625rem;font-weight:700;letter-spacing:-.025em}.page-top ul.breadcrumb>li .delimiter{position:relative;top:-1px;font-size:1.125rem}.page-top > .container:after{content:'';display:block;position:relative;top:12px;border-bottom:1px solid #e7e7e7}.btn{font-family:Poppins;font-weight:700}.shortcode_wysija{display:table;width:100%;max-width:460px;margin-left:auto;margin-right:auto}.shortcode_wysija .wysija-paragraph{display:table-cell;border:none;vertical-align:middle}.shortcode_wysija .wysija-input{border:none;height:3.25rem;padding-left:20px;padding-right:20px}.shortcode_wysija .wysija-submit{height:3.25rem;padding:10px 2rem;text-shadow:none !important;font-size:.75rem}.porto_products_filter_form .btn-submit{display:none}.porto_products_filter_form select{height:2.8125rem;margin-bottom:0.625rem}.porto_products_filter_form select:last-of-type{margin-bottom:0}ul.products li.product-category .thumb-info-title{width:auto;background:#282828;padding:.9em 1.4em}ul.products li.product-category .thumb-info h3{letter-spacing:-.035em;font-size:.875rem}.woocommerce-pagination ul li .prev:before{content:"\e829"}.woocommerce-pagination ul li .next:before{content:"\e828"}.section-product-light .product-image img{filter:brightness(1.06)}.widget_price_filter .price_slider_amount .clear{display:none}body.woocommerce-page.archive .sidebar-content aside.widget{border-bottom:none;padding:0 0 10px}body.woocommerce-page.archive .sidebar-content .widget ul{padding-left:10px}body.woocommerce-page.archive .sidebar-content{border:none}.woocommerce-page .sidebar-content .widget-title{font-size:14px}body.woocommerce-page.archive .owl-carousel.show-nav-title .owl-nav{margin-top:-57px}body.woocommerce-page.archive .sidebar-content .widget .widget-title{padding:10px 0;border-bottom:2px solid rgba(0,0,0,0.1)}body.woocommerce-page.archive .sidebar-content .widget:first-child .widget-title{padding-top:0}.shop-loop-after{border-top:2px solid rgba(0,0,0,0.1)}.woocommerce-pagination ul li .prev,.woocommerce-pagination ul li .next{border:none}.woocommerce-pagination ul li .prev:before,.woocommerce-pagination ul li .next:before{font-size:15px}.sidebar .product-categories li>a{font-size:12px;font-weight:400;line-height:22px}.sidebar-content .filter-item-list{display:block}.sidebar-content .filter-item-list .filter-color{text-indent:35px;width:18px;height:18px;line-height:19px;padding:0;margin-bottom:14px}.sidebar-content .filter-item-list a:not(.filter-color):not(.filter-item){display:inline-block;border:none;font-size:inherit;padding:0}.widget>div>ul li,.widget>ul li{line-height:1.7}.sidebar-content .widget>div>ul,.sidebar-content .widget>ul{font-size:12px}.footer-top > .container{max-width:none;padding-left:20px;padding-right:20px}.footer-top .wp-block-image:after{content:'\f16d';font-family:'Font Awesome 5 Brands';font-size:1.5rem;position:absolute;color:#fff;bottom:1.25rem;right:1.25rem}#footer .widget-title{font-size:15px;text-transform:uppercase}#footer{padding-bottom:1.5rem}#footer .footer-main > .container{padding-bottom:0;padding-top:3rem}#footer .footer-main > .container:after{content:'';display:block;border-bottom:1px solid rgba(255,255,255,.05)}#footer .share-links a{font-size:1.125rem;box-shadow:none}.footer-main > .container > .row{align-items:center}.footer-main > .container > .row > div{display:flex;align-items:flex-end}@media (min-width:992px){.footer-main > .container > .row > div:last-child{justify-content:flex-end}}.footer-main .widget{margin-top:0}.footer-main .widget:not(:last-child){margin-right:1.5rem}.footer-main .menu{display:flex;flex-wrap:wrap;border-bottom:none;margin-top:0}.footer-main .widget>div>ul li{border:none;padding:0;margin-right:1.5rem}.footer-main .menu li:before{display:none}@media(max-width:768px){.page-id-209{padding-left:10px !important;padding-right:10px !important;background:#F6F6F5 !important}}
+</style>
+<link rel="stylesheet" id="styles-child-css" href="css/style_1.css" media="all">
+
+<link rel="stylesheet" id="elementor-icons-shared-0-css" href="css/fontawesome.min.css" media="all">
+<link data-minify="1" rel="stylesheet" id="elementor-icons-fa-solid-css" href="css/solid.min.css" media="all">
+<script src="js/jquery.min.js" id="jquery-core-js"></script>
+<script src="js/jquery-migrate.min.js" id="jquery-migrate-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js?ver=3.1.2" id="wp-polyfill-inert-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.11" id="regenerator-runtime-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0" id="wp-polyfill-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/dist/hooks.min.js?ver=4169d3cf8e8d95a3d6d5" id="wp-hooks-js"></script>
+<script id="wpm-js-extra">
+var wpm = {"ajax_url":"https:\/\/descricao.com.br\/wp-admin\/admin-ajax.php","root":"https:\/\/descricao.com.br\/wp-json\/","nonce_wp_rest":"eb622251c8","nonce_ajax":"a3d3c9aeb4"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/woocommerce-google-adwords-conversion-tracking-tag/js/public/wpm-public.p1.min.js?ver=1.30.5" id="wpm-js"></script>
+<link rel="https://api.w.org/" href="https://descricao.com.br/wp-json/"><link rel="alternate" type="application/json" href="https://descricao.com.br/wp-json/wp/v2/pages/92199"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://descricao.com.br/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://descricao.com.br/wp-includes/wlwmanifest.xml">
+<meta name="generator" content="WordPress 6.2">
+<meta name="generator" content="WooCommerce 7.6.0">
+<link rel="canonical" href="https://descricao.com.br/power-knee-elite-promocao/">
+<link rel="shortlink" href="https://descricao.com.br/?p=92199">
+<link rel="alternate" type="application/json+oembed" href="https://descricao.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdescricao.com.br%2Fpower-knee-elite-promocao%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://descricao.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdescricao.com.br%2Fpower-knee-elite-promocao%2F&#038;format=xml">
+	<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+		var commercekit_ajs = {"ajax_url":"https:\/\/descricao.com.br\/wp-admin\/admin-ajax.php"}	</script>
+	<style rel="stylesheet" type="text/css" media="all">.wc-scm{padding:5px 0px;margin:0;display:block;}.wc-scm .wc-scm-inner{}.wc-scm .wc-scm-count{color:#595959;font-weight:700;font-size:22px}.wc-scm .wc-scm-text {font-size: 14px;color:#595959}</style>
+<!-- This website runs the Product Feed PRO for WooCommerce by AdTribes.io plugin - version 12.5.0 -->
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">var ryviu_WC = {domain: "descricao.com.br", shop_url: "https://descricao.com.br"}, ryviu_global_settings = {"form":{"required":"Por favor, preencha os campos obrigat\u00f3rios","addPhotos":"Enviar Fotos","showTitle":true,"titleForm":"Nos Avalie","titleName":"Seu Nome","acceptFile":"Aceitamos arquivos .jpg e .png com no m\u00e1ximo 2MB","colorInput":"#464646","colorTitle":"#696969","noticeName":"Your name is required field","titleEmail":"Seu E-mail","titleReply":"Respostas","autoPublish":true,"buttonReply":"Enviar","colorNotice":"#dd2c00","colorSubmit":"#ffffff","noticeEmail":"Your email is required and valid email","qualityText":"Qualidade","titleSubmit":"Enviar sua Avalia\u00e7\u00e3o","titleComment":"Coment\u00e1rio","titleSubject":"T\u00edtulo da Avalia\u00e7\u00e3o","titleSuccess":"Thank you! Your review is submited.","colorStarForm":"#ececec","commentButton":"Coment\u00e1rio","noticeSubject":"Title is required field","showtitleForm":true,"errorSentReply":"N\u00e3o foi poss\u00edvel enviar sua resposta","titleMessenger":"Conte\u00fado da Avalia\u00e7\u00e3o","noticeMessenger":"Your review is required field","placeholderName":"Murilo Santos","productNotFound":"N\u00e3o Encontrado","starActivecolor":"#fdbc00","titleReplyWrite":"Escreva uma resposta","backgroundSubmit":"#00aeef","placeholderEmail":"exemplo@seudominio.com.br","buttonCancelReply":"Cancelar","placeholderSubject":"Parece \u00f3timo","replyIsunderReivew":"Sua resposta est\u00e1 em revis\u00e3o","placeholderMessenger":"Escreva alguma coisa","loadAfterContentLoaded":true,"placeholderCommentMessenger":"Espa\u00e7o reservado para texto"},"questions":{"by_text":"Author","of_text":"of","on_text":"on","des_form":"Ask a question to the community here","name_form":"Your Name","email_form":"Your Email Address","input_text":"Have a question? Search for answers","title_form":"No answer found?","answer_form":"Your answers","answer_text":"Answer question","newest_text":"Latest New","notice_form":"Complete before submitting","submit_form":"Send a question","helpful_text":"Most helpful","showing_text":"Show","question_form":"Your question","titleCustomer":"","community_text":"Ask the community here","questions_text":"questions","title_answer_form":"Answer question","ask_community_text":"Ask the community","submit_answer_form":"Send a reply","write_question_text":"Ask a question","question_answer_form":"Question","placeholder_answer_form":"Answer is a required field!","placeholder_question_form":"Question is a required field!"},"review_widget":{"star":1,"style":"style2","title":false,"byText":"Por","ofText":"de","tstar1":"1 Estrela","tstar2":"2 Estrelas","tstar3":"3 Estrelas","tstar4":"4 Estrelas","tstar5":"5 Estrelas","average":"M\u00e9dia","hasOnly":"Tem um","nostars":false,"nowrite":false,"seeLess":"Ver menos","seeMore":"Ver mais","hideFlag":true,"hidedate":true,"loadMore":"Carregar mais avalia\u00e7\u00f5es","noavatar":false,"noreview":true,"order_by":"late","showText":"Show:","showspam":true,"starText":"Estrela","thankYou":"Obrigado","clearText":"Limpar","clear_all":"Limpar tudo","noReviews":"No reviews","outofText":"out of","random_to":20,"replyText":"Resposta","ryplyText":"Coment\u00e1rios","starStyle":"style1","starcolor":"#e6e6e6","starsText":"Estrelas","colorTitle":"#6c8187","colorWrite":"#ffffff","customDate":"dd\/MM\/yy","dateSelect":"dateDefaut","helpulText":"Essa avalia\u00e7\u00e3o foi \u00fatil?","latestText":"Mais Recentes","nolastname":true,"oldestText":"Mais Antigas","paddingTop":"0","reviewText":"avalia\u00e7\u00e3o","sortbyText":"Ordenar por:","starHeight":13,"titleWrite":"Escreva uma Avalia\u00e7\u00e3o","borderColor":"#ffffff","borderStyle":"solid","borderWidth":"0","colorAvatar":"#f8f8f8","filter_list":"Filtrar","firstReview":"Write a first review now","paddingLeft":"0","random_from":0,"repliesText":"Respostas","reviewsText":"avalia\u00e7\u00f5es","showingText":"Mostrando","disableReply":true,"filter_photo":"Com fotos","paddingRight":"0","payment_type":"Monthly","textNotFound":"Nenhum resultado encontrado","textVerified":"Cliente Verificado","colorVerified":"#05d92d","disableHelpul":true,"disableWidget":false,"filter_review":"Filtrar avalia\u00e7\u00f5es","paddingBottom":"0","titleCustomer":"Avalia\u00e7\u00f5es dos Clientes","customerPhotos":"Fotos de Clientes","filter_replies":"Com respostas","filter_reviews":"all","imagesSortText":"Imagens Ordenadas por","submitDoneText":"Sua avalia\u00e7\u00e3o foi enviada","backgroundRyviu":"transparent","backgroundWrite":"#ffb102","disablePurchase":false,"reviewTotalText":"Avalia\u00e7\u00e3o","starActiveStyle":"style1","starActivecolor":"#fdbc00","submitErrorText":"N\u00e3o foi poss\u00edvel enviar sua avalia\u00e7\u00e3o","emptyDescription":"Esse produto ainda n\u00e3o possui avalia\u00e7\u00f5es.","noticeWriteFirst":"Seja o primeiro.","reviewTotalTexts":"Avalia\u00e7\u00f5es","show_title_customer":false,"filter_reviews_local":"US"},"design_settings":{"date":"timeago","sort":"images","showing":30,"timeAgo":false,"approving":true,"colection":false,"no_number":false,"no_review":false,"defautDate":"timeago","defaultDate":"d\/m\/y","client_theme":"masonry","no_lazy_show":true,"product_slug":"produto","verify_reply":true,"verify_review":true,"reviews_per_page":"10"}};</script>		<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+		WebFontConfig = {
+			google: { families: [ 'Open+Sans:200,300,400,500,600,700,800:latin','Shadows+Into+Light:400,700','Poppins:200,300,400,500,600,700,800','Oswald:300,400,600,700' ] }
+		};
+		(function(d) {
+			var wf = d.createElement('script'), s = d.scripts[0];
+			wf.src = 'https://descricao.com.br/wp-content/themes/porto/js/libs/webfont.js';
+			wf.async = true;
+			s.parentNode.insertBefore(wf, s);
+		})(document);</script>
+			<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	
+
+<meta name="generator" content="Powered by Slider Revolution 6.5.11 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
+<link rel="icon" href="images/icone.png" sizes="32x32">
+<link rel="icon" href="images/icone.png" sizes="192x192">
+<link rel="apple-touch-icon" href="images/icone.png">
+<meta name="msapplication-TileImage" content="https://descricao.com.br/wp-content/uploads/2021/04/icone.png">
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">function setREVStartSize(e){
+			//window.requestAnimationFrame(function() {				 
+				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;	
+				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;	
+				try {								
+					var pw = document.getElementById(e.c).parentNode.offsetWidth,
+						newh;
+					pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
+					e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
+					e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
+					e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
+					e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
+					e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
+					e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
+					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);		
+					if(e.layout==="fullscreen" || e.l==="fullscreen") 						
+						newh = Math.max(e.mh,window.RSIH);					
+					else{					
+						e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];					
+						e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
+						e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+						for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1];
+											
+						var nl = new Array(e.rl.length),
+							ix = 0,						
+							sl;					
+						e.tabw = e.tabhide>=pw ? 0 : e.tabw;
+						e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
+						e.tabh = e.tabhide>=pw ? 0 : e.tabh;
+						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;					
+						for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
+						sl = nl[0];									
+						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}															
+						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);					
+						newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
+					}
+					var el = document.getElementById(e.c);
+					if (el!==null && el) el.style.height = newh+"px";					
+					el = document.getElementById(e.c+"_wrapper");
+					if (el!==null && el) {
+						el.style.height = newh+"px";
+						el.style.display = "block";
+					}
+				} catch(e){
+					console.log("Failure at Presize of Slider:" + e)
+				}					   
+			//});
+		  };</script>
+		<style id="wp-custom-css">
+			.product .summary .price ins .amount {
+    color: #cc9900 !important; 
+	font-size: 18px;
+}
+.product .summary .price > .amount {
+    color: #cc9900 !important; 
+	font-size: 18px;
+}
+.woocommerce-Price-amount.amount {
+	font-size: 15px;
+}
+p.price {
+	margin-bottom: 6px !important;
+}
+.woocommerce-order.woocommerce-thankyou.col-lg-8.mx-auto.px-0 .woocommerce-message::before {
+    display: none;
+}
+.woo_paghiper_digitable_line {
+   margin-bottom:0px!important;
+}
+	@media all and (max-width:40em){
+				
+		.footer-main .col-lg-6 {
+    display: block!important;
+}
+a.my-account {
+    display: none!important;
+}	
+.logo.logo-transition {
+    width: 300px!important;
+    max-width: 258px!important;
+    text-align: center!important;
+    align-items: center;
+    margin-bottom: 10px!important;
+    position: relative;
+    padding: 0px!important;
+    margin: 0 0 0!important;
+}
+img.img-responsive.standard-logo.retina-logo {
+    width: 125px!important;
+	margin-left:10px;
+}
+#header.sticky-header .header-main.change-logo .logo img {
+    transform: unset!important;
+}		
+}
+.vendidos{
+	font-size:14px! important;
+	color: #989898;
+}
+
+.woocommerce-order-details a.button-view-boleto {
+    background-color: #43b04c !important;
+    color: #fff !important;
+    border: 0 !important;
+    border-radius: 3rem !important;
+    font-weight: bold;
+    margin-bottom: 2.5rem !important;
+    text-transform: uppercase;
+    padding: 15px !important;
+    width: 100%;
+}
+.button-test {
+    background-color: #fff!important;
+    color: #000!important;
+    border: 2px solid #bdbdbd!important;
+}
+
+.button-view-boleto {
+    background-color: #bdbdbd!important;
+    border-radius: 5px!important;
+    color: #fff!important;
+    padding: 10px 20px!important;
+    text-align: center!important;
+    text-decoration: none!important;
+    display: inline-block!important;
+    font-size: 16px!important;
+    margin-bottom: 20px!important;
+    transition-duration: .4s!important;
+    cursor: pointer!important;
+}
+a {
+    color: var(--wd-link-color);
+    text-decoration: none;
+    transition: all .25s ease;
+}
+a, button, input {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+img.rounded-corners {
+  border-radius: 30px;
+}
+
+/* esconde estoque, add no carrinho */
+span.product-stock.in-stock,strong.single-cart-notice, .wfacp-notice-wrap.wfacp-notice-success {
+    display: none !important;
+}		</style>
+		<style id="kirki-inline-styles"></style><noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"></head>
+<body class="page-template page-template-elementor_canvas page page-id-92199 wp-embed-responsive theme-porto woocommerce-no-js login-popup full blog-1 elementor-default elementor-template-canvas elementor-kit-33834 elementor-page elementor-page-92199">
+<script data-cfasync="false" data-no-defer="1">if(typeof ewww_webp_supported==="undefined"){var ewww_webp_supported=!1}if(ewww_webp_supported){document.body.classList.add("webp-support")}</script>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 0.49803921568627"/><fefuncg type="table" tableValues="0 0.49803921568627"/><fefuncb type="table" tableValues="0 0.49803921568627"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 1"/><fefuncg type="table" tableValues="0 1"/><fefuncb type="table" tableValues="0 1"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.54901960784314 0.98823529411765"/><fefuncg type="table" tableValues="0 1"/><fefuncb type="table" tableValues="0.71764705882353 0.25490196078431"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 1"/><fefuncg type="table" tableValues="0 0.27843137254902"/><fefuncb type="table" tableValues="0.5921568627451 0.27843137254902"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 0"/><fefuncg type="table" tableValues="0 0.64705882352941"/><fefuncb type="table" tableValues="0 1"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.78039215686275 1"/><fefuncg type="table" tableValues="0 0.94901960784314"/><fefuncb type="table" tableValues="0.35294117647059 0.47058823529412"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.65098039215686 0.40392156862745"/><fefuncg type="table" tableValues="0 1"/><fefuncb type="table" tableValues="0.44705882352941 0.4"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.098039215686275 1"/><fefuncg type="table" tableValues="0 0.66274509803922"/><fefuncb type="table" tableValues="0.84705882352941 0.41960784313725"/><fefunca type="table" tableValues="1 1"/></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"/></filter></defs></svg>		<div data-elementor-type="wp-page" data-elementor-id="92199" class="elementor elementor-92199" data-elementor-settings="[]">
+						<div class="elementor-inner">
+							<div class="elementor-section-wrap">
+							<section class="elementor-section elementor-top-section elementor-element elementor-element-ecdc560 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ecdc560" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6fb6a37" data-id="6fb6a37" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-3aa2fb7 elementor-absolute elementor-widget elementor-widget-heading" data-id="3aa2fb7" data-element_type="widget" data-settings="{&quot;_position&quot;:&quot;absolute&quot;}" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default">DESCONTO APLICADO - LIMITADO A UMA COMPRA POR CLIENTE</h4>		</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-2d288a4 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2d288a4" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-8dbe1b1" data-id="8dbe1b1" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-3a06bb8 elementor-arrows-position-inside elementor-pagination-position-outside elementor-widget elementor-widget-image-carousel" data-id="3a06bb8" data-element_type="widget" data-settings="{&quot;slides_to_show&quot;:&quot;1&quot;,&quot;autoplay&quot;:&quot;no&quot;,&quot;infinite&quot;:&quot;no&quot;,&quot;navigation&quot;:&quot;both&quot;,&quot;effect&quot;:&quot;slide&quot;,&quot;speed&quot;:500}" data-widget_type="image-carousel.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image-carousel-wrapper swiper-container" dir="ltr">
+			<div class="elementor-image-carousel swiper-wrapper">
+								<div class="swiper-slide"><figure class="swiper-slide-inner"><img width="450" height="450" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20450%20450&#x27;%3E%3C/svg%3E" alt="hero-i2" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/hero-i2-1-pj948wh6jffcnpai0gnej0xjbtmusx21u94ck2gftg.png"><noscript><img width="450" height="450" decoding="async" class="swiper-slide-image" src="images/hero-i2-1-pj948wh6jffcnpai0gnej0xjbtmusx21u94ck2gftg.png" alt="hero-i2"></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="450" height="450" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20450%20450&#x27;%3E%3C/svg%3E" alt="a2" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/a2-4-pj947fu7wpfaljeyjtwane7q28uatv92z0l5okmhhw.jpg"><noscript><img width="450" height="450" decoding="async" class="swiper-slide-image" src="images/a2-4-pj947fu7wpfaljeyjtwane7q28uatv92z0l5okmhhw.jpg" alt="a2"></noscript></figure></div>			</div>
+												<div class="swiper-pagination"></div>
+													<div class="elementor-swiper-button elementor-swiper-button-prev">
+						<i aria-hidden="true" class="eicon-chevron-left"></i>						<span class="elementor-screen-only">Anterior</span>
+					</div>
+					<div class="elementor-swiper-button elementor-swiper-button-next">
+						<i aria-hidden="true" class="eicon-chevron-right"></i>						<span class="elementor-screen-only">Próximo</span>
+					</div>
+									</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-73dd9ba" data-id="73dd9ba" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-7fc5714 elementor-widget elementor-widget-wp-widget-text" data-id="7fc5714" data-element_type="widget" data-widget_type="wp-widget-text.default">
+				<div class="elementor-widget-container">
+						<div class="textwidget"><p><img decoding="async" class="alignnone size-full wp-image-44173" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%2085%2018&#x27;%3E%3C/svg%3E" alt width="85" height="18" data-lazy-src="https://descricao.com.br/wp-content/uploads/2021/09/Sem-titulo.png"><noscript><img decoding="async" class="alignnone size-full wp-image-44173" src="images/Sem-titulo.png" alt width="85" height="18"></noscript> (571 avaliações)</p>
+</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-c806210 elementor-widget elementor-widget-heading" data-id="c806210" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h1 class="elementor-heading-title elementor-size-default">Power Knee Elite™</h1>		</div>
+				</div>
+				<div class="elementor-element elementor-element-4a50015 elementor-widget elementor-widget-text-editor" data-id="4a50015" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p><span style="font-family: montserrat, sans-serif; font-size: 15px;"><span style="color: #646464;"><span style="color: #646464; font-family: montserrat, sans-serif;"><span style="font-size: 15px;">✔ </span></span><b style="color: #646464; font-family: montserrat, sans-serif; font-size: 15px;">Ajuda no combate às </b><b style="color: #646464; font-family: montserrat, sans-serif; font-size: 15px;">dores no joelho</b><span style="color: #646464; font-family: montserrat, sans-serif;"><span style="font-size: 15px;">;</span></span><br></span><span style="color: #646464;">✔ Ajuda no fortalecimento das articulações;</span><br><span style="color: #646464;">✔ <strong>Auxilia na recuperação do movimento das articulações</strong>;<br>✔ Proporciona mais confiança para realizar exercícios;</span><br><span style="color: #646464;">✔ Ajuda a ter mais estabilidade e equilíbrio.</span><span style="color: #646464;"><br></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-1b9835e elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="1b9835e" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-truck"></i>						</span>
+										<span class="elementor-icon-list-text"><b><span style="color: #43a39e;">Frete Grátis para todo o Brasil.</span></b></span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Garantia de 30 dias, direto em nossa loja.</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-c0c41bf elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c0c41bf" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-85cebb2" data-id="85cebb2" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-7590f7f elementor-widget elementor-widget-text-editor" data-id="7590f7f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p><br><a href="#comprar">ESCOLHER OFERTA</a></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-b9030e7 elementor-widget elementor-widget-text-editor" data-id="b9030e7" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p><strong><span style="color: #43a39e;">A JOELHEIRA AJUDA A ALIVIAR AS DORES E RECUPERAR OS MOVIMENTOS </span></strong></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-53a412f elementor-hidden-mobile elementor-hidden-tablet elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="53a412f" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5994cfe" data-id="5994cfe" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-491a57f elementor-widget elementor-widget-text-editor" data-id="491a57f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 30px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">AJUDA A ALIVIAR AS DORES NO JOELHO</span></span></h3><p><span style="font-size: 18px; color: #000000;"><span style="font-family: montserrat,sans-serif;">Com tramas especiais para criar pressão no joelho, sustentações laterais que ajudam na estabilidade e, um inovador estabilizador de gel para proteção e apoio da patela, o Power Knee Elite™ é um <span style="color: #43a39e;"><strong>grande aliado no combate às dores no joelho</strong></span>. </span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-3d80035 elementor-widget elementor-widget-image" data-id="3d80035" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="380" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20380%20280&#x27;%3E%3C/svg%3E" title="11" alt="11" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/11-pj97r0hmmiw7r31z6nt61u91ewnd6vhegpe46llvxs.jpg"><noscript><img width="380" height="280" decoding="async" src="images/11-pj97r0hmmiw7r31z6nt61u91ewnd6vhegpe46llvxs.jpg" title="11" alt="11"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-02b0106 elementor-widget elementor-widget-text-editor" data-id="02b0106" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 30px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">MAIS CONFIANÇA AO EXECUTAR MOVIMENTOS</span></span></h3><p><span style="font-family: montserrat, sans-serif; color: #000000;"><span style="font-size: 18px;">A joelheira <span style="font-size: 18px; color: #000000;"><span style="font-family: montserrat,sans-serif;">Power Knee Elite™</span></span> auxilia a proporcionar mais <span style="color: #43a39e;"><strong>liberdade e confiança ao executar os movimentos</strong></span> que você precisa.</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-ae2ea01 elementor-widget elementor-widget-image" data-id="ae2ea01" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="320" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20320%20280&#x27;%3E%3C/svg%3E" title="61a1072174380062d4c0f0b0_3 (2)-p-800" alt="61a1072174380062d4c0f0b0_3 (2)-p-800" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/61a1072174380062d4c0f0b0_3-2-p-800-pj8vj40rfhfrjzjnut3izgq0p1eueud00ep47nhfcg.jpeg"><noscript><img width="320" height="280" decoding="async" src="images/61a1072174380062d4c0f0b0_3-2-p-800-pj8vj40rfhfrjzjnut3izgq0p1eueud00ep47nhfcg.jpeg" title="61a1072174380062d4c0f0b0_3 (2)-p-800" alt="61a1072174380062d4c0f0b0_3 (2)-p-800"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-92a4e38 elementor-widget elementor-widget-text-editor" data-id="92a4e38" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 30px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">DESENVOLVIDA EM DETALHES</span></span></h3><p><span style="font-family: montserrat, sans-serif; color: #000000;"><span style="font-size: 18px;">A joelheira Power Knee Elite™ é diferente! Ela é especialmente projetada com a construção nos <span style="color: #43a39e;"><strong>5 pontos de compressão mais importantes do joelho</strong></span>.</span></span></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1d434f6" data-id="1d434f6" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-a705fe9 elementor-widget elementor-widget-image" data-id="a705fe9" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="380" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20380%20280&#x27;%3E%3C/svg%3E" title="taboola_com_politicususa_com_2021_09_27_852cef00" alt="taboola_com_politicususa_com_2021_09_27_852cef00" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/taboola_com_politicususa_com_2021_09_27_852cef00-pj98845wz0b0zo7objxsx0vyiacs8mdl5cp5iu90q8.png"><noscript><img width="380" height="280" decoding="async" src="images/taboola_com_politicususa_com_2021_09_27_852cef00-pj98845wz0b0zo7objxsx0vyiacs8mdl5cp5iu90q8.png" title="taboola_com_politicususa_com_2021_09_27_852cef00" alt="taboola_com_politicususa_com_2021_09_27_852cef00"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-af410bb elementor-widget elementor-widget-text-editor" data-id="af410bb" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 30px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">FORTALECIMENTO DAS ARTICULAÇÕES</span></span></h3><p><span style="font-size: 18px; color: #000000;"><span style="font-family: montserrat,sans-serif;">O <span style="color: #43a39e;"><strong>Power Knee Elite™</strong> </span>ajuda a retomar a movimentação do joelho e, consequentemente, o fortalecimento das articulações.</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-0d1323c elementor-widget elementor-widget-image" data-id="0d1323c" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="360" height="265" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20360%20265&#x27;%3E%3C/svg%3E" title="ezgif-7-48e8ccd188" alt="ezgif-7-48e8ccd188" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/ezgif-7-48e8ccd188-pj99i0m6pr53y5jeae7xofwato424ilpgjkr7a6wvk.gif"><noscript><img width="360" height="265" decoding="async" src="images/ezgif-7-48e8ccd188-pj99i0m6pr53y5jeae7xofwato424ilpgjkr7a6wvk.gif" title="ezgif-7-48e8ccd188" alt="ezgif-7-48e8ccd188"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-f92df1b elementor-widget elementor-widget-text-editor" data-id="f92df1b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 30px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">CONFORTÁVEL E EFICIENTE</span></span></h3><p><span style="font-size: 18px; color: #000000;"><span style="font-family: montserrat,sans-serif;">Fabricada com o tecido tecnológico &#8220;Ultranet&#8221;, nossa joelheira é capaz de unir <span style="color: #43a39e;"><strong>conforto extremo e alta eficiência</strong></span>.</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-98a1fa6 elementor-widget elementor-widget-image" data-id="98a1fa6" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="320" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20320%20280&#x27;%3E%3C/svg%3E" title="knee1desk &#8211; Copia &#8211; Copia" alt="knee1desk - Copia - Copia" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/knee1desk-Copia-Copia-1-pj98qd72xw0xq97mp8msoja5cixw9j38op95i6thbk.png"><noscript><img width="320" height="280" decoding="async" src="images/knee1desk-Copia-Copia-1-pj98qd72xw0xq97mp8msoja5cixw9j38op95i6thbk.png" title="knee1desk &#8211; Copia &#8211; Copia" alt="knee1desk - Copia - Copia"></noscript>														</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-c71dece elementor-section-full_width elementor-hidden-desktop elementor-section-height-default elementor-section-height-default" data-id="c71dece" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-63823ef" data-id="63823ef" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-b27c21b elementor-widget elementor-widget-image" data-id="b27c21b" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="380" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20380%20280&#x27;%3E%3C/svg%3E" title="taboola_com_politicususa_com_2021_09_27_852cef00" alt="taboola_com_politicususa_com_2021_09_27_852cef00" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/taboola_com_politicususa_com_2021_09_27_852cef00-pj98845wz0b0zo7objxsx0vyiacs8mdl5cp5iu90q8.png"><noscript><img width="380" height="280" decoding="async" src="images/taboola_com_politicususa_com_2021_09_27_852cef00-pj98845wz0b0zo7objxsx0vyiacs8mdl5cp5iu90q8.png" title="taboola_com_politicususa_com_2021_09_27_852cef00" alt="taboola_com_politicususa_com_2021_09_27_852cef00"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-0ce80d5 elementor-widget elementor-widget-text-editor" data-id="0ce80d5" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 23px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">AJUDA A ALIVIAR AS DORES NO JOELHO</span></span></h3><p><span style="font-size: 17px; color: #000000;"><span style="font-family: montserrat,sans-serif;">Com tramas especiais para criar pressão no joelho, sustentações laterais que ajudam na estabilidade e, um inovador estabilizador de gel para proteção e apoio da patela, o Power Knee Elite™ é um <span style="color: #43a39e;"><strong>grande aliado no combate às dores no joelho</strong></span>.</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-5de5225 elementor-widget elementor-widget-image" data-id="5de5225" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="380" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20380%20280&#x27;%3E%3C/svg%3E" title="11" alt="11" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/11-pj97r0hmmiw7r31z6nt61u91ewnd6vhegpe46llvxs.jpg"><noscript><img width="380" height="280" decoding="async" src="images/11-pj97r0hmmiw7r31z6nt61u91ewnd6vhegpe46llvxs.jpg" title="11" alt="11"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-eb12aba elementor-widget elementor-widget-text-editor" data-id="eb12aba" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 23px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">FORTALECIMENTO DAS ARTICULAÇÕES</span></span></h3><p><span style="font-size: 17px; color: #000000;"><span style="font-family: montserrat,sans-serif;">O <span style="color: #43a39e;"><strong>Power Knee Elite™</strong></span> ajuda a retomar a movimentação do joelho e, consequentemente, o fortalecimento das articulações.</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-2fa0c61 elementor-widget elementor-widget-image" data-id="2fa0c61" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="360" height="265" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20360%20265&#x27;%3E%3C/svg%3E" title="ezgif-7-48e8ccd188" alt="ezgif-7-48e8ccd188" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/ezgif-7-48e8ccd188-pj99i0m6pr53y5jeae7xofwato424ilpgjkr7a6wvk.gif"><noscript><img width="360" height="265" decoding="async" src="images/ezgif-7-48e8ccd188-pj99i0m6pr53y5jeae7xofwato424ilpgjkr7a6wvk.gif" title="ezgif-7-48e8ccd188" alt="ezgif-7-48e8ccd188"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-b48e80c elementor-widget elementor-widget-text-editor" data-id="b48e80c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 23px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">MAIS CONFIANÇA AO EXECUTAR MOVIMENTOS</span></span></h3><p><span style="font-size: 17px; color: #000000;"><span style="font-family: montserrat,sans-serif;">A joelheira Power Knee Elite™ auxilia a proporcionar <span style="color: #43a39e;"><strong>mais liberdade e confiança ao executar os movimentos</strong></span> que você precisa.</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-8b66be6 elementor-widget elementor-widget-image" data-id="8b66be6" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="380" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20380%20280&#x27;%3E%3C/svg%3E" title="61a1072174380062d4c0f0b0_3 (2)-p-800" alt="61a1072174380062d4c0f0b0_3 (2)-p-800" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/61a1072174380062d4c0f0b0_3-2-p-800-pj8vj40s5spa8u1bwier4uj134vaud3pze5iopurxs.jpeg"><noscript><img width="380" height="280" decoding="async" src="images/61a1072174380062d4c0f0b0_3-2-p-800-pj8vj40s5spa8u1bwier4uj134vaud3pze5iopurxs.jpeg" title="61a1072174380062d4c0f0b0_3 (2)-p-800" alt="61a1072174380062d4c0f0b0_3 (2)-p-800"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-dc47b4c elementor-widget elementor-widget-text-editor" data-id="dc47b4c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 23px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">CONFORTÁVEL E EFICIENTE</span></span></h3><p><span style="font-size: 17px; color: #000000;"><span style="font-family: montserrat,sans-serif;">Fabricada com o tecido tecnológico “Ultranet”, nossa joelheira é capaz de unir <span style="color: #43a39e;"><strong>conforto extremo e alta eficiência</strong></span>.</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-7b17193 elementor-widget elementor-widget-image" data-id="7b17193" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="320" height="280" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20320%20280&#x27;%3E%3C/svg%3E" title="knee1desk &#8211; Copia &#8211; Copia" alt="knee1desk - Copia - Copia" data-lazy-src="https://descricao.com.br/wp-content/uploads/elementor/thumbs/knee1desk-Copia-Copia-1-pj98qd72xw0xq97mp8msoja5cixw9j38op95i6thbk.png"><noscript><img width="320" height="280" decoding="async" src="images/knee1desk-Copia-Copia-1-pj98qd72xw0xq97mp8msoja5cixw9j38op95i6thbk.png" title="knee1desk &#8211; Copia &#8211; Copia" alt="knee1desk - Copia - Copia"></noscript>														</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-ec1216f elementor-widget elementor-widget-text-editor" data-id="ec1216f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3><span style="font-size: 23px; color: #43a39e;"><span style="font-family: montserrat,sans-serif; font-weight: bold;">DESENVOLVIDA EM DETALHES</span></span></h3><p><span style="font-size: 17px; color: #000000;"><span style="font-family: montserrat,sans-serif;">A joelheira Power Knee Elite™ é diferente! Ela é especialmente projetada com a construção nos <span style="color: #43a39e;"><strong>5 pontos de compressão mais importantes do joelho</strong></span>.</span></span></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-0f81207 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0f81207" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a19b35b" data-id="a19b35b" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-6a03a98 elementor-widget elementor-widget-text-editor" data-id="6a03a98" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p style="text-align: center;"><img decoding="async" class="alignnone wp-image-61710" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20450%2064&#x27;%3E%3C/svg%3E" alt width="450" height="64" data-lazy-src="https://descricao.com.br/wp-content/uploads/2021/11/botao.png"><noscript><img decoding="async" class="alignnone wp-image-61710" src="images/botao.png" alt width="450" height="64"></noscript><img decoding="async" class="size-full wp-image-44568 aligncenter" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20550%20110&#x27;%3E%3C/svg%3E" alt width="550" height="110" data-lazy-srcset="https://descricao.com.br/wp-content/uploads/2021/09/Sem-Titulo-2.jpg 550w, https://descricao.com.br/wp-content/uploads/2021/09/Sem-Titulo-2-400x80.jpg 400w" data-lazy-sizes="(max-width: 550px) 100vw, 550px" data-lazy-src="https://descricao.com.br/wp-content/uploads/2021/09/Sem-Titulo-2.jpg"><noscript><img decoding="async" class="size-full wp-image-44568 aligncenter" src="images/Sem-Titulo-2.jpg" alt width="550" height="110" srcset="images/Sem-Titulo-2.jpg 550w, images/Sem-Titulo-2-400x80.jpg 400w" sizes="(max-width: 550px) 100vw, 550px"></noscript></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-e4e15e3 elementor-widget elementor-widget-menu-anchor" data-id="e4e15e3" data-element_type="widget" data-widget_type="menu-anchor.default">
+				<div class="elementor-widget-container">
+					<div id="comprar" class="elementor-menu-anchor"></div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-b9568ec elementor-hidden-tablet elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b9568ec" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-9d09202" data-id="9d09202" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-a26582b elementor-widget elementor-widget-text-editor" data-id="a26582b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">1 UNIDADE</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92709" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20300%20300&#x27;%3E%3C/svg%3E" alt width="300" height="300" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/A1-6.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92709" src="images/A1-6.jpg" alt width="300" height="300"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #545454; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">36%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$197,00 </span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;">por R$97</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$11,18</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-e04e874 elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="e04e874" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://pepper.com.br/checkout/index.html?p=29457&o=27510" class="elementor-button-link elementor-button elementor-size-md" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-3ee28b1" data-id="3ee28b1" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-7ed09a8 elementor-widget elementor-widget-text-editor" data-id="7ed09a8" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">2 UNIDADES</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92226" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20300%20300&#x27;%3E%3C/svg%3E" alt width="300" height="300" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/a2-4.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92226" src="images/a2-4.jpg" alt width="300" height="300"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #646464; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">48%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$297,00</span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;"> por R$147</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$16,94</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-4c469c1 elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="4c469c1" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://pepper.com.br/checkout/index.html?p=29457&o=27511" class="elementor-button-link elementor-button elementor-size-md" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-7c99603" data-id="7c99603" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-54e38d7 elementor-widget elementor-widget-text-editor" data-id="54e38d7" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">4 UNIDADES</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92714" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20300%20300&#x27;%3E%3C/svg%3E" alt width="300" height="300" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/A4-1.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92714" src="images/A4-1.jpg" alt width="300" height="300"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #646464; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">57%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$397,00 </span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;">por R$197</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$22,70</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-d39ad1f elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="d39ad1f" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://pepper.com.br/checkout/index.html?p=29457&o=27512" class="elementor-button-link elementor-button elementor-size-md" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-c202408 elementor-hidden-desktop elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c202408" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-4a172b0" data-id="4a172b0" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-2f7d1f4 elementor-widget elementor-widget-text-editor" data-id="2f7d1f4" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">1 UNIDADE</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92709" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20300%20300&#x27;%3E%3C/svg%3E" alt width="300" height="300" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/A1-6.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92709" src="images/A1-6.jpg" alt width="300" height="300"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #545454; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">36%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$197</span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;">por R$97</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$11,18</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-4285fa4 elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="4285fa4" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://pepper.com.br/checkout/index.html?p=29457&o=27510" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-b60adbb" data-id="b60adbb" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-b1e1d08 elementor-widget elementor-widget-text-editor" data-id="b1e1d08" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">2 UNIDADES</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92226" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20300%20300&#x27;%3E%3C/svg%3E" alt width="300" height="300" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/a2-4.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92226" src="images/a2-4.jpg" alt width="300" height="300"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #646464; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">48%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$459,80</span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;"> por R$237</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$22,97</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-44f1088 elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="44f1088" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://pepper.com.br/checkout/index.html?p=29457&o=27511" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-3a2e6d9" data-id="3a2e6d9" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-02ec46f elementor-widget elementor-widget-text-editor" data-id="02ec46f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">4 UNIDADES</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92714" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20300%20300&#x27;%3E%3C/svg%3E" alt width="300" height="300" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/A4-1.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92714" src="images/A4-1.jpg" alt width="300" height="300"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #646464; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">57%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$,60 </span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;">por R$397</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$38,47</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-e6872db elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="e6872db" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://pepper.com.br/checkout/index.html?p=29457&o=27512" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-de4b516 elementor-hidden-desktop elementor-hidden-tablet elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="de4b516" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-1270ff8" data-id="1270ff8" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-40aa311 elementor-widget elementor-widget-text-editor" data-id="40aa311" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">1 UNIDADE</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92709" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20250%20250&#x27;%3E%3C/svg%3E" alt width="250" height="250" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/A1-6.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92709" src="images/A1-6.jpg" alt width="250" height="250"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #545454; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">36%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$197 </span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;">por R$97</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$11,18</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-2d2c34f elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="2d2c34f" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://descricao.com.br/checkout/?add-to-cart=92720" class="elementor-button-link elementor-button elementor-size-md" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-1ee794e" data-id="1ee794e" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-8012c16 elementor-widget elementor-widget-text-editor" data-id="8012c16" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">2 UNIDADES</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92226" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20250%20250&#x27;%3E%3C/svg%3E" alt width="250" height="250" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/a2-4.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92226" src="images/a2-4.jpg" alt width="250" height="250"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #646464; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">48%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$297,00</span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;"> por R$147</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$16,94</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-302d2b5 elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="302d2b5" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://descricao.com.br/checkout/?add-to-cart=92721" class="elementor-button-link elementor-button elementor-size-md" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-a64dd42" data-id="a64dd42" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-32e3c34 elementor-widget elementor-widget-text-editor" data-id="32e3c34" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h2 style="text-align: center;"><span style="color: #555555;"><span style="font-size: 30px;"><span style="font-family: montserrat,sans-serif; font-weight: bold;"><span style="text-decoration: underline;">4 UNIDADES</span></span></span></span></h2><p><img decoding="async" class="aligncenter wp-image-92714" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20250%20250&#x27;%3E%3C/svg%3E" alt width="250" height="250" data-lazy-src="https://descricao.com.br/wp-content/uploads/2022/01/A4-1.jpg"><noscript><img decoding="async" class="aligncenter wp-image-92714" src="images/A4-1.jpg" alt width="250" height="250"></noscript></p><p class="mb-2" style="text-align: center;"><strong><span style="border-radius: 10px; padding: 5px 8px; background: #646464; color: #fff;">ECONOMIA DE <span style="color: #ff9900;">57%</span></span></strong></p><p style="text-align: center;">de <span style="font-size: 19px;"><span style="text-decoration: line-through; color: #999999;"><span style="font-size: 17px;">R$397,00 </span></span><span style="color: #bc0406; font-size: 22px;"><span style="font-size: 18px; color: #000000;">por R$197</span><br></span></span><span style="font-size: 15px;"><span style="color: #000000;"><span style="font-size: 18px;">12x</span> <span style="font-size: 33px;"><strong>R$22,70</strong></span></span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-63da3be elementor-button-success elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="63da3be" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://descricao.com.br/checkout/?add-to-cart=92736" class="elementor-button-link elementor-button elementor-size-md" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<i aria-hidden="true" class="fas fa-shopping-cart"></i>			</span>
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-b7d1200 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b7d1200" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-cebdb2b" data-id="cebdb2b" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-991727c elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="991727c" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+						</span>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-0d95390 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0d95390" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-c094379" data-id="c094379" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-f09b4de elementor-widget elementor-widget-text-editor" data-id="f09b4de" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3 style="box-sizing: border-box; margin-top: 0px; margin-bottom: 5px; line-height: 1em; font-size: 2.5em; font-family: &#x27;Ubuntu Condensed&#x27;, sans-serif; text-transform: capitalize; color: #2a2a2a; padding: 0px; scroll-behavior: smooth !important;"><span style="font-size: 25px;">Avaliações De Clientes</span></h3><p><span id="numbertotalrate" style="box-sizing: border-box; font-family: Ubuntu, Helvetica, sans-serif; float: left; margin-right: 15px; font-size: 28px; font-weight: bold; color: #575757; scroll-behavior: smooth !important;">4.9</span><img decoding="async" class="alignnone size-full wp-image-44173" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%2085%2018&#x27;%3E%3C/svg%3E" alt width="85" height="18" data-lazy-src="https://descricao.com.br/wp-content/uploads/2021/09/Sem-titulo.png"><noscript><img decoding="async" class="alignnone size-full wp-image-44173" src="images/Sem-titulo.png" alt width="85" height="18"></noscript><br><span style="font-size: 13px;">(261 avaliações)</span></p><p id="reviewrecommend" style="box-sizing: border-box; margin-top: 10px; margin-bottom: 1em; color: #333333; font-size: 1.8em; letter-spacing: -0.02em; line-height: 1.45em; font-family: Roboto, Arial, Helvetica, sans-serif; scroll-behavior: smooth !important;"><span style="font-size: 20px;"><span class="bc0406-bold" style="box-sizing: border-box; scroll-behavior: smooth !important; color: #bc0406; font-weight: bold;">97%</span> dos clientes recomendam esse produto</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-5587892 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="5587892" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+						</span>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-6589f1d elementor-widget elementor-widget-text-editor" data-id="6589f1d" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<div class="col-12 clientreview-card"><p class="mb-0 font-weight-bold">Claudemir Soares</p><p><span class="data-coment">Há 33 minutos </span><img decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%200%200&#x27;%3E%3C/svg%3E" alt data-lazy-src="https://izilife.sfo3.digitaloceanspaces.com/ElementosGerais/5estrelas.svg"><noscript><img decoding="async" src="fonts/5estrelas.svg" alt></noscript></p><p class="client-coment"><span style="color: #000000;">Desde que machuquei meu joelho no futebol eu precisava usar uma órtese para evitar mais lesões. Após aderir a essa joelheira meu problema foi resolvido e as dores sumiram. Ela se ajusta muito bem na perna e é muito confortável.</span></p><hr></div><div class="col-12 clientreview-card"><p class="mb-0 font-weight-bold">Cássio Justino</p><p><span class="data-coment">Há 8 horas </span><img decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%200%200&#x27;%3E%3C/svg%3E" alt data-lazy-src="https://izilife.sfo3.digitaloceanspaces.com/ElementosGerais/5estrelas.svg"><noscript><img decoding="async" src="fonts/5estrelas.svg" alt></noscript></p><p class="client-coment"><span style="color: #000000;">Achei o produto excelente, meu joelho ficou bem mais firme e sem dor depois que comecei a usar!!!</span></p><hr></div><div class="col-12 clientreview-card"><p class="mb-0 font-weight-bold">Valéria Cardoso</p><p><span class="data-coment">Há 21 horas </span><img decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%200%200&#x27;%3E%3C/svg%3E" alt data-lazy-src="https://izilife.sfo3.digitaloceanspaces.com/ElementosGerais/5estrelas.svg"><noscript><img decoding="async" src="fonts/5estrelas.svg" alt></noscript></p><p class="client-coment"><span style="color: #000000;">Comprei um par para mim e outro para a mina mãe por indicação do nosso ortopedista, sempre tivemos problemas nos joelhos. Recebemos nosso pedido agorinha, veio tudo certo, obrigada pessoal! Gratidão</span></p><hr></div><div class="col-12 clientreview-card"><p class="mb-0 font-weight-bold">Juliana</p><p><span class="data-coment">Há 1 dia </span><img decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%200%200&#x27;%3E%3C/svg%3E" alt data-lazy-src="https://izilife.sfo3.digitaloceanspaces.com/ElementosGerais/5estrelas.svg"><noscript><img decoding="async" src="fonts/5estrelas.svg" alt></noscript></p><p class="client-coment"><span style="color: #000000;">O frete expresso que paguei a mais me surpreendeu! Chegou em 7 dias, adorei o produto! Recomendo 👍👍👍</span></p><hr></div><div class="col-12 clientreview-card"><p class="mb-0 font-weight-bold">Alessandro Mariano</p><p><span class="data-coment">Há 1 dia </span><img decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%200%200&#x27;%3E%3C/svg%3E" alt data-lazy-src="https://izilife.sfo3.digitaloceanspaces.com/ElementosGerais/4estrelas.svg"><noscript><img decoding="async" src="fonts/4estrelas.svg" alt></noscript></p><p class="client-coment"><span style="color: #000000;">Produto bom, atende as expectativas.</span></p><hr></div><div class="col-12 clientreview-card"><p class="mb-0 font-weight-bold">Fabiano Souza</p><p><span class="data-coment">Há 2 dias </span><img decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%200%200&#x27;%3E%3C/svg%3E" alt data-lazy-src="https://izilife.sfo3.digitaloceanspaces.com/ElementosGerais/5estrelas.svg"><noscript><img decoding="async" src="fonts/5estrelas.svg" alt></noscript></p><p class="client-coment"><span style="color: #000000;">Muito bom espero q todas as minhas compras sejam assim, parabéns pelo compromisso. Estou indicando o produto para todo mundo.</span></p></div>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-1a04345 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1a04345" data-element_type="section">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-61d0cbb" data-id="61d0cbb" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-a23a79b elementor-widget elementor-widget-html" data-id="a23a79b" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<!-- Taboola Pixel Code -->
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+  window._tfa = window._tfa || [];
+  window._tfa.push({notify: 'event', name: 'page_view', id: 1420149});
+  !function (t, f, a, x) {
+         if (!document.getElementById(x)) {
+            t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+         }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/unip/1420149/tfa.js',
+  'tb_tfa_script');
+</script>
+<!-- End of Taboola Pixel Code -->
+
+
+
+		</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-107d10f elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="107d10f" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-bb666fd" data-id="bb666fd" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-fe8709a elementor-widget elementor-widget-image" data-id="fe8709a" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img decoding="async" width="220" height="319" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20220%20319&#x27;%3E%3C/svg%3E" class="attachment-large size-large" alt data-lazy-src="https://descricao.com.br/wp-content/uploads/2021/10/selo_garantia.webp"><noscript><img decoding="async" width="220" height="319" src="images/selo_garantia.webp" class="attachment-large size-large" alt></noscript>														</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-94cf6a7" data-id="94cf6a7" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-8d76901 elementor-widget elementor-widget-text-editor" data-id="8d76901" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p><span style="color: #000000;">COMPRA 100% SEGURA</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-9eee844 elementor-widget elementor-widget-text-editor" data-id="9eee844" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p><span style="color: #000000;">Aqui sua compra é SEGURA e GARANTIDA, seu risco é ZERO! Garantimos a entrega do seu produto ou seu dinheiro de volta.</span></p><p><span style="color: #000000;">Sua compra neste site está 100% segura, pois usamos protocolos de segurança que garantem total confiabilidade, sigilo e confidencialidade dos seus dados. Nosso certificado SSL garante que não haja qualquer tipo de abertura para a invasão de intrusos, ou seja, seus dados estão sempre protegidos comprando conosco!</span></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-32a88274 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="32a88274" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-58edb57a" data-id="58edb57a" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-73588982 elementor-widget elementor-widget-text-editor" data-id="73588982" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p>DÚVIDAS FREQUENTES</p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-26045d61 elementor-widget elementor-widget-accordion" data-id="26045d61" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;none&quot;}" data-widget_type="accordion.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-accordion" role="tablist">
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6371" class="elementor-tab-title" data-tab="1" role="tab" aria-controls="elementor-tab-content-6371" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>Qual é o tamanho da Power Knee Elite™? Serve em mim?</a>
+					</div>
+					<div id="elementor-tab-content-6371" class="elementor-tab-content elementor-clearfix" data-tab="1" role="tabpanel" aria-labelledby="elementor-tab-title-6371"><p>A Power Knee Elite™ é fabricada com material elástico premium, que adapta-se a qualquer tamanho de joelho/perna.</p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6372" class="elementor-tab-title" data-tab="2" role="tab" aria-controls="elementor-tab-content-6372" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>Ela escorrega durante o uso?</a>
+					</div>
+					<div id="elementor-tab-content-6372" class="elementor-tab-content elementor-clearfix" data-tab="2" role="tabpanel" aria-labelledby="elementor-tab-title-6372">Não. Ela possui uma faixa de pressão especialmente projetada na parte interna para segurar a joelheira, independente de quão forte você se movimentar ou exercitar.</div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6373" class="elementor-tab-title" data-tab="3" role="tab" aria-controls="elementor-tab-content-6373" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>Quais tipos de dores a joelheira ajuda?</a>
+					</div>
+					<div id="elementor-tab-content-6373" class="elementor-tab-content elementor-clearfix" data-tab="3" role="tabpanel" aria-labelledby="elementor-tab-title-6373">Ela ajuda a aliviar dores no joelho em geral, as principais são: Tendinite, Bursite, Artrite, Reumatoide, Inflamação do Tendão, Inflamação do Menisco ou qualquer outro desconforto das articulações.</div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6374" class="elementor-tab-title" data-tab="4" role="tab" aria-controls="elementor-tab-content-6374" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>O produto possui garantia?</a>
+					</div>
+					<div id="elementor-tab-content-6374" class="elementor-tab-content elementor-clearfix" data-tab="4" role="tabpanel" aria-labelledby="elementor-tab-title-6374"><p>Ao efetuar a compra do produto através do site oficial, você está protegido pela nossa garantia total de satisfação. O que significa que você poderá testar o produto por até 7 dias e se não estiver satisfeito, basta entrar em contato conosco, que combinaremos o reembolso.</p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6375" class="elementor-tab-title" data-tab="5" role="tab" aria-controls="elementor-tab-content-6375" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>Disponível a pronta entrega?</a>
+					</div>
+					<div id="elementor-tab-content-6375" class="elementor-tab-content elementor-clearfix" data-tab="5" role="tabpanel" aria-labelledby="elementor-tab-title-6375"><p>Sim. O processo de envio se inicia assim que o pagamento é aprovado.</p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6376" class="elementor-tab-title" data-tab="6" role="tab" aria-controls="elementor-tab-content-6376" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>Quais são as formas de pagamento?</a>
+					</div>
+					<div id="elementor-tab-content-6376" class="elementor-tab-content elementor-clearfix" data-tab="6" role="tabpanel" aria-labelledby="elementor-tab-title-6376"><p>Você poderá pagar imediatamente através do cartão de crédito parcelado em até 12x, ou no boleto bancário, com um prazo de até 2 dias úteis para compensação após o pagamento.</p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6377" class="elementor-tab-title" data-tab="7" role="tab" aria-controls="elementor-tab-content-6377" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>Sobre o frete grátis</a>
+					</div>
+					<div id="elementor-tab-content-6377" class="elementor-tab-content elementor-clearfix" data-tab="7" role="tabpanel" aria-labelledby="elementor-tab-title-6377"><p>O produto é entregue pelos Correios no endereço fornecido ao finalizar a compra. Nosso prazo de entrega varia entre 10 e 30 dias úteis após a postagem.</p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-6378" class="elementor-tab-title" data-tab="8" role="tab" aria-controls="elementor-tab-content-6378" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href>Acompanhamento e rastreio do pedido</a>
+					</div>
+					<div id="elementor-tab-content-6378" class="elementor-tab-content elementor-clearfix" data-tab="8" role="tabpanel" aria-labelledby="elementor-tab-title-6378"><p>Você irá receber o código de rastreio e as instruções para rastreamento no e-mail fornecido ao finalizar seu pedido, em até 5 dias após a compra.</p></div>
+				</div>
+								</div>
+				</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-01fe1f4 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="01fe1f4" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+		
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-2530135" data-id="2530135" data-element_type="column">
+					<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-d0aee9e elementor-widget elementor-widget-text-editor" data-id="d0aee9e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p style="text-align: center;"><span style="color: #000000;"><a style="text-decoration: underline; color: #000000;" href="https://descricao.com.br/rastreio/">Rastrear Pedido</a> | <span style="text-decoration: underline;"><a style="text-decoration: underline; color: #000000;" href="https://descricao.com.br/perguntas-frequentes/">Perguntas Frequentes</a></span> | <a style="text-decoration: underline; color: #000000;" href="https://descricao.com.br/contato/">Contato</a> | <span style="text-decoration: underline;"><a style="text-decoration: underline; color: #000000;" href="https://descricao.com.br/termos-de-envios-e-entregas/">Termos de Envios e Entregas</a></span> | <span style="text-decoration: underline;"><a style="text-decoration: underline; color: #000000;" href="https://descricao.com.br/troca-devolucao-e-garantia/">Troca, Devolução e Garantia</a></span></span></p><p style="text-align: center;"><span style="color: #000000;"><span style="font-size: 17px;"><strong>DÚVIDAS?<br></strong></span>WhatsApp: (44) 99115-4370</span><br><span style="color: #000000;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe9f8a9b909a97939b908a91be9a9b8d9d8c979d9f91d09d9193d09c8c">[email&#160;protected]</a></span></p><p style="text-align: center;"><span style="color: #000000;">Copyright © 2023 Descrição Magazine</span><br><span style="color: #000000;">32.282.516/0001-62</span></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+				</div>
+					</div>
+					</div>
+				</section>
+						</div>
+						</div>
+					</div>
+		
+		<script data-cfasync="false" src="js/email-decode.min.js"></script><script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+			window.RS_MODULES = window.RS_MODULES || {};
+			window.RS_MODULES.modules = window.RS_MODULES.modules || {};
+			window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
+			window.RS_MODULES.defered = true;
+			window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
+			window.RS_MODULES.type = 'compiled';
+		</script>
+			<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<link rel="stylesheet" id="e-animations-css" href="css/animations.min.css" media="all">
+<link data-minify="1" rel="stylesheet" id="rs-plugin-settings-css" href="css/rs6.css" media="all">
+<style id="rs-plugin-settings-inline-css">
+#rs-demo-id {}
+</style>
+<script id="ce4wp_form_submit-js-extra">
+var ce4wp_form_submit_data = {"siteUrl":"https:\/\/descricao.com.br","url":"https:\/\/descricao.com.br\/wp-admin\/admin-ajax.php","nonce":"ac046e8cee","listNonce":"6f4e3af94a","activatedNonce":"290de6c573"};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://descricao.com.br/wp-content/cache/min/1/wp-content/plugins/creative-mail-by-constant-contact/assets/js/block/submit.js?ver=1678994116" id="ce4wp_form_submit-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://descricao.com.br/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=1678994116" id="swv-js"></script>
+<script id="contact-form-7-js-extra">
+var wpcf7 = {"api":{"root":"https:\/\/descricao.com.br\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://descricao.com.br/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/js/index.js?ver=1678994116" id="contact-form-7-js"></script>
+<script src="js/jquery.blockUI.min.js" id="jquery-blockui-js"></script>
+<script id="wc-add-to-cart-js-extra">
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"Ver carrinho","cart_url":"https:\/\/descricao.com.br\/finalizar-compra\/","is_cart":"","cart_redirect_after_add":"yes"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=7.6.0" id="wc-add-to-cart-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.7.6.0" id="js-cookie-js"></script>
+<script id="woocommerce-js-extra">
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=7.6.0" id="woocommerce-js"></script>
+<script id="wc-cart-fragments-js-extra">
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_c67819f5fb3627dc8135d36adadea399","fragment_name":"wc_fragments_c67819f5fb3627dc8135d36adadea399","request_timeout":"5000"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=7.6.0" id="wc-cart-fragments-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/upnotese/dist/main.min.js?ver=6.2" id="upnotese-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/upnotese/dist/boleto.min.js?ver=6.2" id="boleto-js"></script>
+<script type="rocketlazyloadscript" id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"\/finalizar-compra\/|\/checkout\/order-received\/|\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/checkout\/|\/finalizar-compra\/|\/my-account\/|\/wc-api\/v(.*)|\/(index\\.php\/)?(.*)wp\\-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/descricao.com.br","onHoverDelay":"100","rateThrottle":"3"};
+</script>
+<script type="rocketlazyloadscript" id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script id="porto-live-search-js-extra">
+var porto_live_search = {"nonce":"c8839ff0d0"};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://descricao.com.br/wp-content/cache/min/1/wp-content/themes/porto/inc/lib/live-search/live-search.js?ver=1678994116" id="porto-live-search-js"></script>
+<script type="rocketlazyloadscript" id="ryviu-local-js-before">
+var ryviu_app = {active_reviews_tab: 0, position_display: 11, enable_ajax_add_to_cart: 0, element_trigger_click: ".ryviu_reviews_tab_tab > a"};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://descricao.com.br/wp-content/cache/min/1/wp-content/plugins/ryviu/assets/js/local-ryviu.js?ver=1678994116" id="ryviu-local-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://descricao.com.br/wp-content/cache/min/1/v/static/js/app.js?ver=1678994116" id="ryviu-app-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/comment-reply.min.js?ver=6.2" id="comment-reply-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/themes/porto/js/bootstrap.optimized.min.js?ver=5.0.1" id="bootstrap-js"></script>
+<script src="js/jquery.cookie.min.js" id="jquery-cookie-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/themes/porto/js/libs/owl.carousel.min.js?ver=2.3.4" id="owl.carousel-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script async="async" src="js/jquery.magnific-popup.min.js" id="jquery-magnific-popup-js"></script>
+<script id="porto-theme-js-extra">
+var js_porto_vars = {"rtl":"","theme_url":"https:\/\/descricao.com.br\/wp-content\/themes\/porto-child","ajax_url":"https:\/\/descricao.com.br\/wp-admin\/admin-ajax.php","change_logo":"1","container_width":"1200","grid_gutter_width":"20","show_sticky_header":"1","show_sticky_header_tablet":"1","show_sticky_header_mobile":"1","ajax_loader_url":"\/\/descricao.com.br\/wp-content\/themes\/porto\/images\/ajax-loader@2x.gif","category_ajax":"1","compare_popup":"","compare_popup_title":"","prdctfltr_ajax":"","slider_loop":"1","slider_autoplay":"1","slider_autoheight":"1","slider_speed":"5000","slider_nav":"","slider_nav_hover":"1","slider_margin":"","slider_dots":"1","slider_animatein":"","slider_animateout":"","product_thumbs_count":"4","product_zoom":"1","product_zoom_mobile":"","product_image_popup":"1","zoom_type":"inner","zoom_scroll":"1","zoom_lens_size":"200","zoom_lens_shape":"square","zoom_contain_lens":"1","zoom_lens_border":"1","zoom_border_color":"#888888","zoom_border":"0","screen_lg":"1220","mfp_counter":"%curr% of %total%","mfp_img_error":"<a href=\"%url%\">The image<\/a> could not be loaded.","mfp_ajax_error":"<a href=\"%url%\">The content<\/a> could not be loaded.","popup_close":"Close","popup_prev":"Previous","popup_next":"Next","request_error":"The requested content cannot be loaded.<br\/>Please try again later.","loader_text":"Loading...","submenu_back":"Back","porto_nonce":"b9cf67ee74","use_skeleton_screen":["shop","product","quickview"],"user_edit_pages":""};
+</script>
+<script src="js/theme.min.js" id="porto-theme-js"></script>
+<script type="rocketlazyloadscript" async="async" data-rocket-src="https://descricao.com.br/wp-content/themes/porto/js/theme-async.min.js?ver=6.2.3" id="porto-theme-async-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/themes/porto/js/woocommerce-theme.min.js?ver=6.2.3" id="porto-woocommerce-theme-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.5.2" id="elementor-pro-webpack-runtime-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.5.3" id="elementor-webpack-runtime-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.5.3" id="elementor-frontend-modules-js"></script>
+<script type="rocketlazyloadscript" id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/descricao.com.br\/wp-admin\/admin-ajax.php","nonce":"9764064fc2","urls":{"assets":"https:\/\/descricao.com.br\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/descricao.com.br\/wp-json\/"},"i18n":{"toc_no_headings_found":"N\u00e3o foram encontrados cabe\u00e7alhos nesta p\u00e1gina."},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"menu_cart":{"cart_page_url":"https:\/\/descricao.com.br\/finalizar-compra\/","checkout_page_url":"https:\/\/descricao.com.br\/checkout\/"},"facebook_sdk":{"lang":"pt_BR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/descricao.com.br\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.5.2" id="elementor-pro-frontend-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2" id="elementor-waypoints-js"></script>
+<script src="js/core.min.js" id="jquery-ui-core-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=5.3.6" id="swiper-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/lib/share-link/share-link.min.js?ver=3.5.3" id="share-link-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.9.0" id="elementor-dialog-js"></script>
+<script type="rocketlazyloadscript" id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnTwitter":"Compartilhar no Twitter","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":992,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Celular","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Celular extra","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet","value":991,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet extra","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.5.3","is_static":false,"experimentalFeatures":{"e_import_export":true,"e_hidden_wordpress_widgets":true,"theme_builder_v2":true,"landing-pages":true,"elements-color-picker":true,"favorite-widgets":true,"admin-top-bar":true,"form-submissions":true},"urls":{"assets":"https:\/\/descricao.com.br\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"viewport_tablet":991,"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":92199,"title":"Power%20Knee%20Elite%E2%84%A2%20%E2%80%93%20Descri%C3%A7%C3%A3o%20Magazine","excerpt":"","featuredImage":false}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.5.3" id="elementor-frontend-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor-pro/assets/js/preloaded-elements-handlers.min.js?ver=3.5.2" id="pro-preloaded-elements-handlers-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/elementor/assets/js/preloaded-modules.min.js?ver=3.5.3" id="preloaded-modules-js"></script>
+<script src="js/jquery.sticky.min.js" id="e-sticky-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/underscore.min.js?ver=1.13.4" id="underscore-js"></script>
+<script id="wp-util-js-extra">
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-includes/js/wp-util.min.js?ver=6.2" id="wp-util-js"></script>
+<script id="wpforms-elementor-js-extra">
+var wpformsElementorVars = {"captcha_provider":"recaptcha","recaptcha_type":"v2"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://descricao.com.br/wp-content/plugins/wpforms-lite/assets/js/integrations/elementor/frontend.min.js?ver=1.8.1.2" id="wpforms-elementor-js"></script>
+<script type="rocketlazyloadscript">jQuery(document).ready(function($){
+    $('.jr-insta-thumb .thumbnails').show().addClass('owl-carousel').owlCarousel({
+        items: 11,
+        responsive: {
+            0: {
+                items:2
+            },
+            480: {
+                items:3
+            },
+            768: {
+                items:4
+            },
+            992: {
+                items:7
+            },
+            1200: {
+                items:9
+            },
+            1680: {
+                items:11
+            }
+        },
+		nav: false,
+		dots: false,
+		loop: true,
+		navText: [],
+		autoplay: true,
+		autoplayTimeout: 6000,
+    });
+    
+    if ($('.dropdown_product_cat').length && $.fn.select2) {
+        $('.dropdown_product_cat').select2('destroy');
+    }
+    
+    $('.porto_products_filter_form select').on('change', function(e) {
+       $(this).siblings('.btn-submit').trigger('click'); 
+    });
+});</script><script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="js/lazyload.min.js"></script>	<script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1682635525 -->
